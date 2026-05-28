@@ -118,20 +118,24 @@
             margin-bottom: 16px;
         }
 
-        /* --- PRESET THUMBNAIL ASPECT --- */
+        /* --- AUTO ASPECT RATIO MEDIA HOLDER --- */
         .preset-media-holder {
             width: 100%;
             border-radius: 20px;
             margin-bottom: 20px;
             overflow: hidden;
-            aspect-ratio: 16/9;
             box-shadow: 0 15px 30px rgba(0,0,0,0.5);
             background: #151b2c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .preset-img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            max-height: 480px; /* Batasi tinggi maksimal agar video portrait tidak terlalu panjang */
+            object-fit: contain; /* Memastikan video tidak terpotong */
+            background: #000;
         }
 
         .preset-title {
@@ -249,7 +253,7 @@
             </div>
             <h2 style="font-weight: 700; font-size: 22px; margin-bottom: 12px;">Creative Studio</h2>
             <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 10px;">
-                Eksplorasi kumpulan preset premium Alight Motion pilihan dengan sinematik terbaik. Tingkatkan kualitas editing videomu hanya dalam satu kali klik.
+                Eksplorasi kumpulan premium preset Alight Motion pilihan dengan sinematik terbaik. Tingkatkan kualitas editing videomu hanya dalam satu kali klik.
             </p>
         </div>
     </section>
@@ -275,11 +279,9 @@
     </nav>
 
     <script>
-        // ==========================================
-        // GANTI ID DI BAWAH INI DENGAN ID SPREADSHEET-MU
-        // ==========================================
+        // Masukkan ID Spreadsheet kamu di bawah ini
         const SPREADSHEET_ID = '19ao1jySc0m7c6zNtA6VISopSoVOMivHRAJsrwTrf5eg';
-        const SHEET_NAME = 'preset'; // Ganti jika nama sheet kamu berbeda
+        const SHEET_NAME = 'preset'; 
 
         function switchTab(tabId, el) {
             document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
@@ -304,7 +306,6 @@
                 const response = await fetch(url);
                 const text = await response.text();
                 
-                // Membersihkan data JSON gviz dari Google
                 const jsonString = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
                 const data = JSON.parse(jsonString);
                 
@@ -316,16 +317,13 @@
                     return;
                 }
 
-                // Melakukan perulangan data dari Google Sheets (Melewati baris judul pertama jika data dibaca sebagai baris biasa)
-                rows.forEach((row, index) => {
-                    // Mendapatkan nilai tiap kolom secara aman
+                rows.forEach((row) => {
                     const name = row.c[0] ? row.c[0].v : '';
                     const mediaUrl = row.c[1] ? row.c[1].v : '';
                     const link5mb = row.c[2] ? row.c[2].v : '';
                     const linkXml = row.c[3] ? row.c[3].v : '';
                     const audioUrl = row.c[4] ? row.c[4].v : '';
 
-                    // Jika nama kosong, skip baris ini
                     if(!name) return;
 
                     let card = document.createElement('div');
@@ -337,7 +335,7 @@
 
                     let mediaHtml = '';
                     if(mediaUrl) {
-                        if(mediaUrl.match(/\.(mp4|webm|ogg)/i) || mediaUrl.includes('video')) {
+                        if(mediaUrl.match(/\.(mp4|webm|ogg)/i) || mediaUrl.includes('video') || mediaUrl.includes('drive.google.com/file/d/')) {
                             mediaHtml = `<video src="${mediaUrl}" class="preset-img" controls playsinline></video>`;
                         } else {
                             mediaHtml = `<img src="${mediaUrl}" class="preset-img" alt="Thumbnail" onerror="this.src='https://via.placeholder.com/600x337/111827/4b5563?text=Preview+Error'">`;
