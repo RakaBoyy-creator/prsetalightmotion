@@ -9,7 +9,7 @@
     
     <style>
         :root {
-            /* Warna Statis & Konsisten - Kesan High-Tech */
+            /* Warna Statis - Mengunci kesan premium */
             --neon-cyan: #00f2ff;
             --neon-violet: #7000ff;
             --glow-cyan: rgba(0, 242, 255, 0.15);
@@ -40,34 +40,43 @@
             position: relative;
         }
 
-        /* --- BACKGROUND AMBIENT NEBULA (CANGGIH & ELEGAN) --- */
+        /* --- BACKGROUND AMBIENT NEBULA BERGERAK (CINEMATIC MOTION) --- */
         body::before, body::after {
             content: '';
             position: fixed;
-            width: 400px;
-            height: 400px;
+            width: 450px;
+            height: 450px;
             border-radius: 50%;
-            filter: blur(150px);
+            filter: blur(140px);
             z-index: -1;
-            opacity: 0.4;
+            opacity: 0.35;
             pointer-events: none;
-            animation: nebulaFloat 20s infinite alternate ease-in-out;
         }
+        
+        /* Bola Neon Biru Cyan */
         body::before {
             background: var(--neon-cyan);
-            top: -10%;
-            left: -10%;
+            animation: cyanMovement 25s infinite alternate ease-in-out;
         }
+        
+        /* Bola Neon Ungu Violet */
         body::after {
             background: var(--neon-violet);
-            bottom: -10%;
-            right: -10%;
-            animation-delay: -10s;
+            animation: violetMovement 25s infinite alternate ease-in-out;
         }
 
-        @keyframes nebulaFloat {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(50px, 50px) scale(1.2); }
+        /* Jalur pergerakan lambat bola biru */
+        @keyframes cyanMovement {
+            0% { top: -10%; left: -10%; transform: scale(1); }
+            50% { top: 30%; left: 70%; transform: scale(1.2); }
+            100% { top: 70%; left: -20%; transform: scale(0.9); }
+        }
+
+        /* Jalur pergerakan lambat bola ungu (berlawanan arah agar estetik) */
+        @keyframes violetMovement {
+            0% { bottom: -10%; right: -10%; transform: scale(1.1); }
+            50% { bottom: 60%; right: 60%; transform: scale(0.8); }
+            100% { bottom: -20%; right: 80%; transform: scale(1.3); }
         }
 
         /* --- SMOOTH PAGE SLIDE --- */
