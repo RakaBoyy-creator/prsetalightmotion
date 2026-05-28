@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preset Alight Motion</title>
+    <title>Preset Alight Motion - Premium Studio</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <style>
-        /* --- DESIGN SYSTEM REVOLUTION --- */
         :root {
-            --bg-base: #0b0f19;
-            --bg-gradient: linear-gradient(145deg, #0b0f19 0%, #1e113a 100%);
-            --accent-glow-blue: rgba(56, 189, 248, 0.15);
-            --accent-glow-purple: rgba(168, 85, 247, 0.15);
-            --glass-core: rgba(255, 255, 255, 0.02);
-            --glass-stroke: rgba(255, 255, 255, 0.07);
+            /* Warna Statis & Konsisten - Kesan High-Tech */
+            --neon-cyan: #00f2ff;
+            --neon-violet: #7000ff;
+            --glow-cyan: rgba(0, 242, 255, 0.15);
+            --glow-violet: rgba(112, 0, 255, 0.2);
+            
+            --bg-base: #060913;
             --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --neon-blue: #38bdf8;
-            --neon-purple: #a855f7;
+            --text-secondary: #64748b;
+            --glass-core: rgba(10, 15, 30, 0.7);
+            --glass-stroke: rgba(255, 255, 255, 0.05);
         }
 
         * {
@@ -32,20 +32,50 @@
         }
 
         body {
-            background: var(--bg-gradient);
-            background-attachment: fixed;
+            background: var(--bg-base);
             color: var(--text-primary);
             min-height: 100vh;
             overflow-x: hidden;
             padding-bottom: 110px;
+            position: relative;
         }
 
-        /* --- SMOOTH ANIMATIONS --- */
+        /* --- BACKGROUND AMBIENT NEBULA (CANGGIH & ELEGAN) --- */
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            filter: blur(150px);
+            z-index: -1;
+            opacity: 0.4;
+            pointer-events: none;
+            animation: nebulaFloat 20s infinite alternate ease-in-out;
+        }
+        body::before {
+            background: var(--neon-cyan);
+            top: -10%;
+            left: -10%;
+        }
+        body::after {
+            background: var(--neon-violet);
+            bottom: -10%;
+            right: -10%;
+            animation-delay: -10s;
+        }
+
+        @keyframes nebulaFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.2); }
+        }
+
+        /* --- SMOOTH PAGE SLIDE --- */
         .page-section {
             display: none;
             padding: 24px 20px;
-            animation: ultraSlideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-            max-width: 540px;
+            animation: ultraSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            max-width: 500px;
             margin: 0 auto;
         }
         .page-section.active {
@@ -53,184 +83,214 @@
         }
 
         @keyframes ultraSlideUp {
-            from { opacity: 0; transform: translateY(40px) scale(0.98); filter: blur(4px); }
-            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+            from { opacity: 0; transform: translateY(30px); filter: blur(5px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
-        /* --- PRESTIGE GLASS CARD --- */
+        /* --- PREMIUM SHARP GLASS CARD --- */
         .glass-card {
             background: var(--glass-core);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-stroke);
-            border-radius: 28px;
-            padding: 30px 24px;
-            margin-bottom: 25px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border-radius: 24px;
+            padding: 28px 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
             position: relative;
-            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+        
+        .glass-card:hover {
+            border-color: rgba(0, 242, 255, 0.2);
+            box-shadow: 0 30px 60px -15px rgba(0, 242, 255, 0.1);
+            transform: translateY(-2px);
         }
 
         /* --- MODERN HEADER --- */
         header {
             text-align: center;
-            padding: 45px 20px 15px;
+            padding: 50px 20px 20px;
         }
         header h1 {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--neon-blue) 0%, var(--neon-purple) 100%);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #fff 40%, var(--neon-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
         }
 
-        /* --- LUXURY BUTTONS --- */
+        /* --- FUTURISTIC OUTLINE BUTTONS --- */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.02);
             color: var(--text-primary);
             padding: 14px 24px;
             border: 1px solid var(--glass-stroke);
-            border-radius: 16px;
+            border-radius: 14px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             width: 100%;
         }
-        .btn:active {
-            transform: scale(0.97);
+        
+        .btn-lightning-glow {
+            border-color: rgba(0, 242, 255, 0.3);
+            color: var(--neon-cyan);
         }
+        .btn-lightning-glow:hover {
+            background: var(--neon-cyan);
+            color: #000;
+            box-shadow: 0 0 20px var(--glow-cyan);
+        }
+
+        .btn-code-glow {
+            border-color: rgba(112, 0, 255, 0.4);
+            color: #b380ff;
+        }
+        .btn-code-glow:hover {
+            background: var(--neon-violet);
+            color: #fff;
+            box-shadow: 0 0 20px var(--glow-violet);
+        }
+
         .btn-group {
             display: flex;
             gap: 12px;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         /* --- AUTO ASPECT RATIO MEDIA HOLDER --- */
         .preset-media-holder {
             width: 100%;
-            border-radius: 20px;
+            border-radius: 16px;
             margin-bottom: 20px;
             overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-            background: #151b2c;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            background: #020408;
             display: flex;
             justify-content: center;
             align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.02);
         }
         .preset-img {
             width: 100%;
             height: auto;
-            max-height: 480px; /* Batasi tinggi maksimal agar video portrait tidak terlalu panjang */
-            object-fit: contain; /* Memastikan video tidak terpotong */
-            background: #000;
+            max-height: 450px; 
+            object-fit: contain; 
         }
 
         .preset-title {
-            font-size: 19px;
+            font-size: 17px;
             font-weight: 600;
             margin-bottom: 16px;
-            letter-spacing: -0.3px;
+            letter-spacing: -0.2px;
         }
 
         .no-sound {
-            color: #f43f5e;
-            font-size: 13px;
+            color: #fda4af;
+            font-size: 12px;
             font-weight: 500;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
-            margin-top: 15px;
-            padding: 14px;
-            background: rgba(244, 63, 94, 0.06);
-            border-radius: 14px;
-            border: 1px solid rgba(244, 63, 94, 0.15);
+            margin-top: 14px;
+            padding: 12px;
+            background: rgba(244, 63, 94, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(244, 63, 94, 0.1);
+            letter-spacing: 0.3px;
         }
 
-        /* --- FLOATING PREMIUM DOCK --- */
+        /* --- CYBERPUNK BOTTOM NAV DOCK --- */
         .bottom-nav {
             position: fixed;
-            bottom: 28px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80%;
-            max-width: 320px;
-            background: rgba(11, 15, 25, 0.75);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
+            width: 86%;
+            max-width: 300px;
+            background: rgba(6, 9, 19, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             display: flex;
             justify-content: space-around;
-            padding: 12px 8px;
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
             z-index: 1000;
         }
         .nav-item {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 11px;
-            font-weight: 600;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 6px 24px;
-            border-radius: 16px;
+            transition: all 0.3s ease;
+            padding: 8px 20px;
+            border-radius: 14px;
         }
         .nav-item i {
-            font-size: 20px;
+            font-size: 18px;
         }
         .nav-item.active {
-            color: var(--neon-blue);
-            background: rgba(56, 189, 248, 0.08);
+            color: var(--neon-cyan);
+            background: rgba(0, 242, 255, 0.05);
+            border: 1px solid rgba(0, 242, 255, 0.1);
         }
 
-        /* --- MINIMALIST WHATSAPP FLOATING --- */
+        /* --- WA FLOATING --- */
         .wa-float {
             position: fixed;
-            bottom: 115px;
+            bottom: 110px;
             right: 24px;
-            background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
-            color: white;
-            width: 52px;
-            height: 52px;
+            background: rgba(34, 197, 94, 0.1);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 26px;
-            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.35);
+            font-size: 22px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             z-index: 999;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
         }
         .wa-float:hover {
-            transform: scale(1.08) translateY(-3px);
+            background: #22c55e;
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
         }
 
-        /* Loading Spinner */
+        /* --- LOADING SPINNER --- */
         .spinner {
-            border: 4px solid rgba(255,255,255,0.1);
-            width: 36px;
-            height: 36px;
+            border: 3px solid rgba(255,255,255,0.03);
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            border-left-color: var(--neon-blue);
-            animation: spin 1s linear infinite;
+            border-left-color: var(--neon-cyan);
+            animation: spin 0.8s linear infinite;
             margin: 30px auto;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -239,20 +299,20 @@
 <body>
 
     <header>
-        <h1>Preset Alight Motion</h1>
+        <h1>Preset Studio</h1>
     </header>
 
     <a href="https://wa.me/628888171836" class="wa-float" target="_blank" aria-label="Contact Admin">
-        <i class="ph-fill ph-whatsapp-logo"></i>
+        <i class="ph-bold ph-whatsapp-logo"></i>
     </a>
 
     <section id="beranda" class="page-section active">
-        <div class="glass-card" style="text-align: center; padding: 45px 24px;">
-            <div style="background: linear-gradient(135deg, rgba(56,189,248,0.1), rgba(168,85,247,0.1)); width: 70px; height: 70px; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
-                <i class="ph-duotone ph-sparkle" style="font-size: 36px; color: var(--neon-blue);"></i>
+        <div class="glass-card" style="text-align: center; padding: 40px 24px;">
+            <div style="background: rgba(0, 242, 255, 0.03); border: 1px solid rgba(0, 242, 255, 0.1); width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                <i class="ph-bold ph-sparkle" style="font-size: 28px; color: var(--neon-cyan);"></i>
             </div>
-            <h2 style="font-weight: 700; font-size: 22px; margin-bottom: 12px;">Creative Studio</h2>
-            <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 10px;">
+            <h2 style="font-weight: 700; font-size: 19px; margin-bottom: 12px; letter-spacing: -0.3px;">Creative Engine</h2>
+            <p style="font-size: 13px; color: #94a3b8; line-height: 1.8; margin-bottom: 10px;">
                 Eksplorasi kumpulan premium preset Alight Motion pilihan dengan sinematik terbaik. Tingkatkan kualitas editing videomu hanya dalam satu kali klik.
             </p>
         </div>
@@ -261,10 +321,9 @@
     <section id="preset" class="page-section">
         <div id="loading-state" style="text-align: center; display: none;">
             <div class="spinner"></div>
-            <p style="color: var(--text-secondary); font-size: 14px;">Memuat preset terbaru...</p>
+            <p style="color: var(--text-secondary); font-size: 13px; letter-spacing: 0.5px;">FETCHING ENGINE DATA...</p>
         </div>
-        <div id="preset-container">
-            </div>
+        <div id="preset-container"></div>
     </section>
 
     <nav class="bottom-nav">
@@ -279,7 +338,6 @@
     </nav>
 
     <script>
-        // Masukkan ID Spreadsheet kamu di bawah ini
         const SPREADSHEET_ID = '19ao1jySc0m7c6zNtA6VISopSoVOMivHRAJsrwTrf5eg';
         const SHEET_NAME = 'preset'; 
 
@@ -330,7 +388,7 @@
                     card.className = 'glass-card';
                     
                     let soundHtml = audioUrl 
-                        ? `<a href="${audioUrl}" target="_blank" class="btn" style="background: rgba(34, 197, 94, 0.06); color: #4ade80; border-color: rgba(34, 197, 94, 0.2);"><i class="ph-bold ph-download-simple"></i> Download Musik</a>`
+                        ? `<a href="${audioUrl}" target="_blank" class="btn" style="border-color: rgba(34, 197, 94, 0.2); color: #4ade80; background: rgba(34, 197, 94, 0.02);"><i class="ph-bold ph-download-simple"></i> Download Musik</a>`
                         : `<div class="no-sound"><i class="ph-bold ph-speaker-slash"></i> Sound Tidak Tersedia</div>`;
 
                     let mediaHtml = '';
@@ -338,18 +396,18 @@
                         if(mediaUrl.match(/\.(mp4|webm|ogg)/i) || mediaUrl.includes('video') || mediaUrl.includes('drive.google.com/file/d/')) {
                             mediaHtml = `<video src="${mediaUrl}" class="preset-img" controls playsinline></video>`;
                         } else {
-                            mediaHtml = `<img src="${mediaUrl}" class="preset-img" alt="Thumbnail" onerror="this.src='https://via.placeholder.com/600x337/111827/4b5563?text=Preview+Error'">`;
+                            mediaHtml = `<img src="${mediaUrl}" class="preset-img" alt="Thumbnail" onerror="this.src='https://via.placeholder.com/600x337/0a0f1e/334155?text=Preview+Error'">`;
                         }
                     } else {
-                        mediaHtml = `<img src="https://via.placeholder.com/600x337/111827/4b5563?text=No+Preview" class="preset-img">`;
+                        mediaHtml = `<img src="https://via.placeholder.com/600x337/0a0f1e/334155?text=No+Preview" class="preset-img">`;
                     }
 
                     card.innerHTML = `
                         <div class="preset-media-holder">${mediaHtml}</div>
                         <h3 class="preset-title">${name}</h3>
                         <div class="btn-group">
-                            <a href="${link5mb}" class="btn" target="_blank" style="flex: 1;"><i class="ph-bold ph-lightning"></i> 5MB</a>
-                            <a href="${linkXml}" class="btn" target="_blank" style="flex: 1;"><i class="ph-bold ph-code"></i> XML</a>
+                            <a href="${link5mb}" class="btn btn-lightning-glow" target="_blank" style="flex: 1;"><i class="ph-bold ph-lightning"></i> 5MB</a>
+                            <a href="${linkXml}" class="btn btn-code-glow" target="_blank" style="flex: 1;"><i class="ph-bold ph-code"></i> XML</a>
                         </div>
                         ${soundHtml}
                     `;
@@ -360,18 +418,18 @@
                 console.error(error);
                 loading.style.display = 'none';
                 container.innerHTML = `
-                <div class="glass-card" style="text-align:center; padding: 50px 20px;">
-                    <i class="ph-bold ph-warning-circle" style="font-size: 44px; color: #f43f5e; margin-bottom: 12px;"></i>
-                    <p style="color: #f43f5e; font-size: 14px;">Gagal memuat data. Periksa kembali konfigurasi ID Spreadsheet kamu.</p>
+                <div class="glass-card" style="text-align:center; padding: 40px 20px; border-color: #f43f5e;">
+                    <i class="ph-bold ph-warning-circle" style="font-size: 36px; color: #f43f5e; margin-bottom: 12px;"></i>
+                    <p style="color: #f43f5e; font-size: 13px;">Gagal sinkronisasi data dengan Google Sheets.</p>
                 </div>`;
             }
         }
 
         function showEmptyState(container) {
             container.innerHTML = `
-            <div class="glass-card" style="text-align:center; padding: 50px 20px;">
-                <i class="ph-duotone ph-tray" style="font-size: 44px; color: var(--text-secondary); margin-bottom: 12px;"></i>
-                <p style="color: var(--text-secondary); font-size: 14px;">Belum ada koleksi preset dirilis.</p>
+            <div class="glass-card" style="text-align:center; padding: 40px 20px;">
+                <i class="ph-bold ph-tray" style="font-size: 36px; color: var(--text-secondary); margin-bottom: 12px;"></i>
+                <p style="color: var(--text-secondary); font-size: 13px;">Belum ada koleksi preset dirilis.</p>
             </div>`;
         }
     </script>
