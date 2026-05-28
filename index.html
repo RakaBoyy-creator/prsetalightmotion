@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preset Alight Motion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        /* --- DESIGN SYSTEM REVOLUTION --- */
+        :root {
+            --bg-base: #0b0f19;
+            --bg-gradient: linear-gradient(145deg, #0b0f19 0%, #1e113a 100%);
+            --accent-glow-blue: rgba(56, 189, 248, 0.15);
+            --accent-glow-purple: rgba(168, 85, 247, 0.15);
+            --glass-core: rgba(255, 255, 255, 0.02);
+            --glass-stroke: rgba(255, 255, 255, 0.07);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --neon-blue: #38bdf8;
+            --neon-purple: #a855f7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-bottom: 110px;
+        }
+
+        /* --- SMOOTH ANIMATIONS --- */
+        .page-section {
+            display: none;
+            padding: 24px 20px;
+            animation: ultraSlideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes ultraSlideUp {
+            from { opacity: 0; transform: translateY(40px) scale(0.98); filter: blur(4px); }
+            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+
+        /* --- PRESTIGE GLASS CARD --- */
+        .glass-card {
+            background: var(--glass-core);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-stroke);
+            border-radius: 28px;
+            padding: 30px 24px;
+            margin-bottom: 25px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+        }
+
+        /* --- MODERN HEADER --- */
+        header {
+            text-align: center;
+            padding: 45px 20px 15px;
+        }
+        header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--neon-blue) 0%, var(--neon-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        /* --- LUXURY BUTTONS --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-primary);
+            padding: 14px 24px;
+            border: 1px solid var(--glass-stroke);
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 100%;
+        }
+        .btn:active {
+            transform: scale(0.97);
+        }
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        /* --- PRESET THUMBNAIL ASPECT --- */
+        .preset-media-holder {
+            width: 100%;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            background: #151b2c;
+        }
+        .preset-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .preset-title {
+            font-size: 19px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+        }
+
+        .no-sound {
+            color: #f43f5e;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 15px;
+            padding: 14px;
+            background: rgba(244, 63, 94, 0.06);
+            border-radius: 14px;
+            border: 1px solid rgba(244, 63, 94, 0.15);
+        }
+
+        /* --- FLOATING PREMIUM DOCK --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 320px;
+            background: rgba(11, 15, 25, 0.75);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 8px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            z-index: 1000;
+        }
+        .nav-item {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 6px 24px;
+            border-radius: 16px;
+        }
+        .nav-item i {
+            font-size: 20px;
+        }
+        .nav-item.active {
+            color: var(--neon-blue);
+            background: rgba(56, 189, 248, 0.08);
+        }
+
+        /* --- MINIMALIST WHATSAPP FLOATING --- */
+        .wa-float {
+            position: fixed;
+            bottom: 115px;
+            right: 24px;
+            background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+            color: white;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.35);
+            z-index: 999;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .wa-float:hover {
+            transform: scale(1.08) translateY(-3px);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 4px solid rgba(255,255,255,0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: var(--neon-blue);
+            animation: spin 1s linear infinite;
+            margin: 30px auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Preset Alight Motion</h1>
+    </header>
+
+    <a href="https://wa.me/628888171836" class="wa-float" target="_blank" aria-label="Contact Admin">
+        <i class="ph-fill ph-whatsapp-logo"></i>
+    </a>
+
+    <section id="beranda" class="page-section active">
+        <div class="glass-card" style="text-align: center; padding: 45px 24px;">
+            <div style="background: linear-gradient(135deg, rgba(56,189,248,0.1), rgba(168,85,247,0.1)); width: 70px; height: 70px; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
+                <i class="ph-duotone ph-sparkle" style="font-size: 36px; color: var(--neon-blue);"></i>
+            </div>
+            <h2 style="font-weight: 700; font-size: 22px; margin-bottom: 12px;">Creative Studio</h2>
+            <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 10px;">
+                Eksplorasi kumpulan preset premium Alight Motion pilihan dengan sinematik terbaik. Tingkatkan kualitas editing videomu hanya dalam satu kali klik.
+            </p>
+        </div>
+    </section>
+
+    <section id="preset" class="page-section">
+        <div id="loading-state" style="text-align: center; display: none;">
+            <div class="spinner"></div>
+            <p style="color: var(--text-secondary); font-size: 14px;">Memuat preset terbaru...</p>
+        </div>
+        <div id="preset-container">
+            </div>
+    </section>
+
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="switchTab('beranda', this)">
+            <i class="ph-bold ph-cube"></i>
+            <span>Beranda</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('preset', this)">
+            <i class="ph-bold ph-film-strip"></i>
+            <span>Preset</span>
+        </div>
+    </nav>
+
+    <script>
+        // ==========================================
+        // GANTI ID DI BAWAH INI DENGAN ID SPREADSHEET-MU
+        // ==========================================
+        const SPREADSHEET_ID = 'MASUKKAN_ID_SPREADSHEET_KAMU_DISINI';
+        const SHEET_NAME = 'Sheet1'; // Ganti jika nama sheet kamu berbeda
+
+        function switchTab(tabId, el) {
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+            el.classList.add('active');
+
+            if(tabId === 'preset') fetchPresetsFromSheets();
+            window.scrollTo(0,0);
+        }
+
+        async function fetchPresetsFromSheets() {
+            const container = document.getElementById('preset-container');
+            const loading = document.getElementById('loading-state');
+            
+            container.innerHTML = '';
+            loading.style.display = 'block';
+
+            const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
+
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                
+                // Membersihkan data JSON gviz dari Google
+                const jsonString = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
+                const data = JSON.parse(jsonString);
+                
+                const rows = data.table.rows;
+                loading.style.display = 'none';
+
+                if (!rows || rows.length === 0) {
+                    showEmptyState(container);
+                    return;
+                }
+
+                // Melakukan perulangan data dari Google Sheets (Melewati baris judul pertama jika data dibaca sebagai baris biasa)
+                rows.forEach((row, index) => {
+                    // Mendapatkan nilai tiap kolom secara aman
+                    const name = row.c[0] ? row.c[0].v : '';
+                    const mediaUrl = row.c[1] ? row.c[1].v : '';
+                    const link5mb = row.c[2] ? row.c[2].v : '';
+                    const linkXml = row.c[3] ? row.c[3].v : '';
+                    const audioUrl = row.c[4] ? row.c[4].v : '';
+
+                    // Jika nama kosong, skip baris ini
+                    if(!name) return;
+
+                    let card = document.createElement('div');
+                    card.className = 'glass-card';
+                    
+                    let soundHtml = audioUrl 
+                        ? `<a href="${audioUrl}" target="_blank" class="btn" style="background: rgba(34, 197, 94, 0.06); color: #4ade80; border-color: rgba(34, 197, 94, 0.2);"><i class="ph-bold ph-download-simple"></i> Download Musik</a>`
+                        : `<div class="no-sound"><i class="ph-bold ph-speaker-slash"></i> Sound Tidak Tersedia</div>`;
+
+                    let mediaHtml = '';
+                    if(mediaUrl) {
+                        if(mediaUrl.match(/\.(mp4|webm|ogg)/i) || mediaUrl.includes('video')) {
+                            mediaHtml = `<video src="${mediaUrl}" class="preset-img" controls playsinline></video>`;
+                        } else {
+                            mediaHtml = `<img src="${mediaUrl}" class="preset-img" alt="Thumbnail" onerror="this.src='https://via.placeholder.com/600x337/111827/4b5563?text=Preview+Error'">`;
+                        }
+                    } else {
+                        mediaHtml = `<img src="https://via.placeholder.com/600x337/111827/4b5563?text=No+Preview" class="preset-img">`;
+                    }
+
+                    card.innerHTML = `
+                        <div class="preset-media-holder">${mediaHtml}</div>
+                        <h3 class="preset-title">${name}</h3>
+                        <div class="btn-group">
+                            <a href="${link5mb}" class="btn" target="_blank" style="flex: 1;"><i class="ph-bold ph-lightning"></i> 5MB</a>
+                            <a href="${linkXml}" class="btn" target="_blank" style="flex: 1;"><i class="ph-bold ph-code"></i> XML</a>
+                        </div>
+                        ${soundHtml}
+                    `;
+                    container.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error(error);
+                loading.style.display = 'none';
+                container.innerHTML = `
+                <div class="glass-card" style="text-align:center; padding: 50px 20px;">
+                    <i class="ph-bold ph-warning-circle" style="font-size: 44px; color: #f43f5e; margin-bottom: 12px;"></i>
+                    <p style="color: #f43f5e; font-size: 14px;">Gagal memuat data. Periksa kembali konfigurasi ID Spreadsheet kamu.</p>
+                </div>`;
+            }
+        }
+
+        function showEmptyState(container) {
+            container.innerHTML = `
+            <div class="glass-card" style="text-align:center; padding: 50px 20px;">
+                <i class="ph-duotone ph-tray" style="font-size: 44px; color: var(--text-secondary); margin-bottom: 12px;"></i>
+                <p style="color: var(--text-secondary); font-size: 14px;">Belum ada koleksi preset dirilis.</p>
+            </div>`;
+        }
+    </script>
+</body>
+</html>
