@@ -120,21 +120,23 @@
 
         .preset-media-holder {
             width: 100%;
-            border-radius: 16px;
-            margin-bottom: 20px;
+            border-radius: 14px;
+            margin-bottom: 16px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            background: #020408;
+            background: #020305;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            aspect-ratio: 16 / 9;
+            position: relative;
         }
         .preset-img {
             width: 100%;
-            height: auto;
-            max-height: 450px; 
-            object-fit: contain; 
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            background: #020305;
         }
 
         .preset-title {
@@ -384,6 +386,40 @@
                         </div>
                         ${soundHtml}
                     `;
+
+                    const mediaHolder = card.querySelector('.preset-media-holder');
+                    const mediaEl = mediaHolder.querySelector('video, img');
+
+                    if (mediaEl) {
+                        const setAspectRatio = (width, height) => {
+                            if (width && height) {
+                                mediaHolder.style.aspectRatio = `${width} / ${height}`;
+                            }
+                        };
+
+                        if (mediaEl.tagName === 'VIDEO') {
+                            mediaEl.addEventListener('loadedmetadata', () => {
+                                setAspectRatio(mediaEl.videoWidth || 16, mediaEl.videoHeight || 9);
+                            });
+                            mediaEl.addEventListener('error', () => {
+                                setAspectRatio(16, 9);
+                            });
+                            if (mediaEl.readyState >= 1) {
+                                setAspectRatio(mediaEl.videoWidth || 16, mediaEl.videoHeight || 9);
+                            }
+                        } else {
+                            mediaEl.addEventListener('load', () => {
+                                setAspectRatio(mediaEl.naturalWidth || mediaEl.width, mediaEl.naturalHeight || mediaEl.height);
+                            });
+                            mediaEl.addEventListener('error', () => {
+                                setAspectRatio(16, 9);
+                            });
+                            if (mediaEl.complete && mediaEl.naturalWidth) {
+                                setAspectRatio(mediaEl.naturalWidth, mediaEl.naturalHeight);
+                            }
+                        }
+                    }
+
                     fragment.appendChild(card);
                 });
                 
